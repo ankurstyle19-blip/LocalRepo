@@ -105,6 +105,15 @@ export const translations = {
     'ask_dadi': 'Ask Dadi about your health',
     'medical_questions_only': 'I can only answer medical and health-related questions',
     'speak_response': 'Listen to response'
+    
+    // New translations
+    'medicines_products': 'Medicines & Products',
+    'emergency_sos': 'Emergency SOS',
+    'ai_reminders': 'AI Reminders',
+    'ai_health_planner': 'AI Health Planner',
+    'voice_input': 'Voice Input',
+    'start_speaking': 'Start speaking',
+    'stop_speaking': 'Stop speaking'
   },
   hi: {
     // Header
@@ -212,5 +221,14 @@ export const translations = {
     'ask_dadi': 'दादी से अपनी सेहत के बारे में पूछें',
     'medical_questions_only': 'मैं केवल स्वास्थ्य और मेडिकल सवालों का जवाब दे सकती हूं',
     'speak_response': 'जवाब सुनें'
+    
+    // New translations
+    'medicines_products': 'दवाएं और उत्पाद',
+    'emergency_sos': 'आपातकालीन SOS',
+    'ai_reminders': 'AI रिमाइंडर',
+    'ai_health_planner': 'AI स्वास्थ्य योजनाकार',
+    'voice_input': 'आवाज इनपुट',
+    'start_speaking': 'बोलना शुरू करें',
+    'stop_speaking': 'बोलना बंद करें'
   }
 };

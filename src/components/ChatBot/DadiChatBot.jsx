@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import { useAuth } from '../../context/AuthContext';
+import AIReminderSystem from './AIReminderSystem';
+import AIHealthPlanner from './AIHealthPlanner';
+import VoiceGuidance from './VoiceGuidance';
 
 const GEMINI_API_KEY = 'AIzaSyATlMq9S66FLRuQTuixmB7CXHMDnK2SAs0';
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
@@ -17,6 +20,9 @@ function DadiChatBot({ showOnHomepage = false }) {
   const [inputText, setInputText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
+  const [showReminders, setShowReminders] = useState(false);
+  const [showHealthPlanner, setShowHealthPlanner] = useState(false);
+  const [isListening, setIsListening] = useState(false);
   const messagesEndRef = useRef(null);
   const { t } = useLanguage();
   const { user } = useAuth();
@@ -175,6 +181,16 @@ Please respond as Dadi would, with care and medical knowledge.`;
     }
   };
 
+  const handleVoiceInput = (transcript) => {
+    setInputText(transcript);
+  };
+
+  const handleVoiceInputComplete = () => {
+    if (inputText.trim()) {
+      handleSendMessage();
+    }
+  };
+
   return (
     <div className={`chatbot-container ${showOnHomepage ? 'homepage-chatbot' : ''}`}>
       <button
@@ -199,6 +215,24 @@ Please respond as Dadi would, with care and medical knowledge.`;
               <ion-icon name="heart-outline"></ion-icon>
               दादी चैटबॉट {user && <span className="user-greeting">- {user.name}</span>}
             </h3>
+            <div className="chatbot-header-actions">
+              <button
+                className="header-action-btn"
+                onClick={() => setShowReminders(!showReminders)}
+                title="AI Reminders"
+              >
+                <ion-icon name="alarm-outline"></ion-icon>
+              </button>
+              {user && (
+                <button
+                  className="header-action-btn premium"
+                  onClick={() => setShowHealthPlanner(!showHealthPlanner)}
+                  title="AI Health Planner (Premium)"
+                >
+                  <ion-icon name="fitness-outline"></ion-icon>
+                </button>
+              )}
+            </div>
             <button
               className="chatbot-close"
               onClick={() => setIsOpen(false)}
@@ -245,6 +279,12 @@ Please respond as Dadi would, with care and medical knowledge.`;
 
           <div className="chatbot-input">
             <div className="input-group">
+              <VoiceGuidance
+                onTranscript={handleVoiceInput}
+                onComplete={handleVoiceInputComplete}
+                isListening={isListening}
+                setIsListening={setIsListening}
+              />
               <textarea
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
@@ -253,6 +293,7 @@ Please respond as Dadi would, with care and medical knowledge.`;
                 rows="1"
                 disabled={isLoading}
               />
+              
               <button
                 className="send-btn"
                 onClick={handleSendMessage}
@@ -264,6 +305,20 @@ Please respond as Dadi would, with care and medical knowledge.`;
             </div>
           </div>
         </div>
+        
+        {showReminders && (
+          <AIReminderSystem 
+            user={user}
+            onClose={() => setShowReminders(false)}
+          />
+        )}
+        
+        {showHealthPlanner && user && (
+          <AIHealthPlanner 
+            user={user}
+            onClose={() => setShowHealthPlanner(false)}
+          />
+        )}
       )}
     </div>
   );

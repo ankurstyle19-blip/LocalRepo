@@ -325,6 +325,160 @@ body.nav-active { overflow: hidden; }
   background-color: var(--eerie-black);
 }
 
+.disease-radar-btn {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.4rem;
+  margin-right: 16px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+}
+
+.disease-radar-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.disease-radar-btn:hover::before {
+  left: 100%;
+}
+
+.disease-radar-btn:hover {
+  background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
+}
+
+.disease-radar-btn ion-icon {
+  font-size: 1.8rem;
+  animation: pulse-radar 2s infinite;
+}
+
+@keyframes pulse-radar {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.radar-text {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.emergency-sos-btn {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 30px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+  margin-right: 16px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+  animation: emergency-glow 2s infinite alternate;
+}
+
+@keyframes emergency-glow {
+  0% {
+    box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4);
+  }
+  100% {
+    box-shadow: 0 8px 30px rgba(239, 68, 68, 0.6);
+  }
+}
+
+.emergency-sos-btn:hover {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 35px rgba(239, 68, 68, 0.5);
+}
+
+.emergency-sos-btn ion-icon {
+  font-size: 2rem;
+  animation: emergency-pulse 1.5s infinite;
+}
+
+@keyframes emergency-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.medicines-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.4rem;
+  margin-right: 16px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.medicines-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.medicines-btn:hover::before {
+  left: 100%;
+}
+
+.medicines-btn:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+}
+
+.medicines-btn ion-icon {
+  font-size: 1.8rem;
+}
+
 .navbar,
 .overlay {
   position: fixed;
@@ -1144,6 +1298,928 @@ body.nav-active { overflow: hidden; }
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+/* AI Reminder System Styles */
+.ai-reminder-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.ai-reminder-modal {
+  background: white;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+.ai-reminder-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  color: white;
+  border-radius: 20px 20px 0 0;
+}
+
+.ai-reminder-header h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.close-reminder-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  padding: 6px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.close-reminder-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.ai-reminder-content {
+  padding: 24px;
+}
+
+.notification-prompt {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #fef3c7;
+  padding: 16px 20px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  color: #92400e;
+}
+
+.notification-prompt ion-icon {
+  font-size: 2rem;
+  color: #f59e0b;
+}
+
+.notification-prompt h4 {
+  margin: 0 0 4px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.notification-prompt p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.enable-notifications-btn {
+  background: #f59e0b;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.enable-notifications-btn:hover {
+  background: #d97706;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.section-header h4 {
+  color: #374151;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.add-reminder-btn {
+  background: #8b5cf6;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.add-reminder-btn:hover {
+  background: #7c3aed;
+}
+
+.add-reminder-form {
+  background: #f9fafb;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.9rem;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  padding: 10px 12px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.cancel-btn,
+.save-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.cancel-btn {
+  background: #f3f4f6;
+  color: #374151;
+  border: 2px solid #d1d5db;
+}
+
+.cancel-btn:hover {
+  background: #e5e7eb;
+}
+
+.save-btn {
+  background: #8b5cf6;
+  color: white;
+}
+
+.save-btn:hover {
+  background: #7c3aed;
+}
+
+.reminders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.reminder-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  transition: all 0.2s ease;
+}
+
+.reminder-card:hover {
+  border-color: #8b5cf6;
+}
+
+.reminder-card.inactive {
+  opacity: 0.6;
+  background: #f9fafb;
+}
+
+.reminder-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.reminder-info {
+  flex: 1;
+}
+
+.reminder-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.reminder-header h5 {
+  color: #374151;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.ai-badge {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.reminder-time {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin: 0 0 8px;
+  font-weight: 500;
+}
+
+.reminder-notes {
+  color: #9ca3af;
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.reminder-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.toggle-btn,
+.delete-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+
+.toggle-btn {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.toggle-btn.active {
+  background: #10b981;
+  color: white;
+}
+
+.toggle-btn:hover {
+  transform: scale(1.1);
+}
+
+.delete-btn {
+  background: #fef2f2;
+  color: #ef4444;
+}
+
+.delete-btn:hover {
+  background: #fee2e2;
+  transform: scale(1.1);
+}
+
+.no-reminders {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6b7280;
+}
+
+.no-reminders ion-icon {
+  font-size: 4rem;
+  color: #d1d5db;
+  margin-bottom: 16px;
+}
+
+.no-reminders h4 {
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+/* AI Health Planner Styles */
+.ai-health-planner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.ai-health-planner-modal {
+  background: white;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 1000px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+.ai-health-planner-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+  border-radius: 20px 20px 0 0;
+  position: relative;
+}
+
+.ai-health-planner-header h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.premium-badge {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.close-planner-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  padding: 6px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.close-planner-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.ai-health-planner-content {
+  padding: 24px;
+}
+
+/* Premium Subscription Styles */
+.premium-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 24px;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+  border-radius: 20px 20px 0 0;
+  position: relative;
+}
+
+.premium-icon {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.premium-header h3 {
+  margin: 0 0 8px;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.premium-header p {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 1.1rem;
+}
+
+.premium-content {
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.premium-features h4 {
+  color: #374151;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+.feature-item ion-icon {
+  color: #10b981;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.feature-item span {
+  color: #374151;
+  font-weight: 500;
+}
+
+.pricing {
+  margin-bottom: 32px;
+}
+
+.price {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #f59e0b;
+  margin-bottom: 8px;
+}
+
+.price span {
+  font-size: 1.2rem;
+  color: #6b7280;
+}
+
+.pricing p {
+  color: #6b7280;
+  margin: 0;
+}
+
+.subscribe-btn {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 auto;
+}
+
+.subscribe-btn:hover {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+  transform: translateY(-2px);
+}
+
+/* Health Plan Generator Styles */
+.plan-generator {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.plan-generator h4 {
+  color: #374151;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.generate-plan-btn {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 24px;
+}
+
+.generate-plan-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+  transform: translateY(-2px);
+}
+
+.generate-plan-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.generation-status {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.generation-status p {
+  color: #6b7280;
+  margin: 8px 0;
+  font-size: 0.9rem;
+}
+
+/* Health Plan Display Styles */
+.health-plan-display {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.plan-header {
+  text-align: center;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.plan-header h4 {
+  color: #374151;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.plan-header p {
+  color: #6b7280;
+  margin-bottom: 16px;
+}
+
+.new-plan-btn {
+  background: #f3f4f6;
+  color: #374151;
+  border: 2px solid #d1d5db;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.new-plan-btn:hover {
+  background: #e5e7eb;
+}
+
+.plan-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.plan-section {
+  background: #f9fafb;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.plan-section h5 {
+  color: #374151;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.plan-section h5 ion-icon {
+  color: #f59e0b;
+  font-size: 1.5rem;
+}
+
+.diet-plan {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.meal-section h6 {
+  color: #374151;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.meal-section ul,
+.health-tips,
+.medications,
+.warnings-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.meal-section li,
+.health-tips li,
+.medications li,
+.warnings-list li {
+  color: #6b7280;
+  margin-bottom: 8px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.meal-section li::before,
+.health-tips li::before,
+.medications li::before {
+  content: '•';
+  color: #f59e0b;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+.warnings-list li::before {
+  content: '⚠️';
+  position: absolute;
+  left: 0;
+}
+
+.exercise-plan {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.day-plan {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.day-plan h6 {
+  color: #374151;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  text-align: center;
+  padding: 8px;
+  background: #f59e0b;
+  color: white;
+  border-radius: 8px;
+}
+
+.plan-section.warnings {
+  background: #fef3c7;
+  border-left: 4px solid #f59e0b;
+}
+
+.warnings h5 {
+  color: #92400e;
+}
+
+.warnings-list li {
+  color: #92400e;
+}
+
+/* Voice Guidance Styles */
+.voice-input-btn {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  position: relative;
+  margin-right: 8px;
+}
+
+.voice-input-btn:hover:not(.listening) {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  transform: scale(1.1);
+}
+
+.voice-input-btn.listening {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  animation: voice-pulse 1.5s infinite;
+}
+
+@keyframes voice-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+  }
+}
+
+.voice-pulse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Chatbot Header Actions */
+.chatbot-header-actions {
+  display: flex;
+  gap: 8px;
+  margin-right: 12px;
+}
+
+.header-action-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-action-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+.header-action-btn.premium {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.header-action-btn.premium:hover {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+}
+
+/* Responsive Design for New Features */
+@media (max-width: 768px) {
+  .ai-reminder-modal,
+  .ai-health-planner-modal {
+    margin: 10px;
+    max-width: none;
+    min-height: calc(100vh - 20px);
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .diet-plan,
+  .exercise-plan {
+    grid-template-columns: 1fr;
+  }
+  
+  .features-list {
+    text-align: center;
+  }
+  
+  .chatbot-header-actions {
+    display: none;
+  }
+  
+  .voice-input-btn {
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .reminder-card {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  
+  .reminder-actions {
+    justify-content: center;
+  }
+  
+  .plan-sections {
+    gap: 20px;
+  }
+  
+  .plan-section {
+    padding: 16px;
+  }
 }
 
 /* Responsive adjustments for hero section */
