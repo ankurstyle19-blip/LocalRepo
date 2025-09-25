@@ -5,9 +5,20 @@ import AIReminderSystem from './AIReminderSystem';
 import AIHealthPlanner from './AIHealthPlanner';
 import VoiceGuidance from './VoiceGuidance';
 
-// ⚠️ DO NOT keep API key in frontend code for production
 const GEMINI_API_KEY = 'AIzaSyATlMq9S66FLRuQTuixmB7CXHMDnK2SAs0';
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0flash:generateContent';
+const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+
+import React, { useState, useRef, useEffect } from 'react';
+import { useLanguage } from '../../context/LanguageContext';
+import { useAuth } from '../../context/AuthContext';
+import AIReminderSystem from './AIReminderSystem';
+import AIHealthPlanner from './AIHealthPlanner';
+import VoiceGuidance from './VoiceGuidance';
+
+// ⚠️ DO NOT keep API key in frontend code for production
+const GEMINI_API_KEY = 'YOUR_API_KEY_HERE';
+const GEMINI_API_URL =
+  'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
 
 function DadiChatBot({ showOnHomepage = false }) {
   const [isOpen, setIsOpen] = useState(false);
